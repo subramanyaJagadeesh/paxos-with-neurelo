@@ -66,32 +66,8 @@ class Env:
             for r in replicas:
                 self.send_message(r, RequestMessage(pid, Command(pid, 0, f"operation {i}")))
         return
-def validate_input(num):
-    if not num.isdigit() or (int(num) < 1 or int(num) >10):
-        return False
-    return True
 
 if __name__ == "__main__":
     print('Paxos Consensus Algorithm with the power of Neurelo\'s Data Access API!')
 
-    n_acceptors = input('Enter the number of Acceptors between 1 to 10: \n')
-
-    if not validate_input(n_acceptors): 
-        print('Acceptors must be within 1 to 10')
-        sys.exit(1)        
-
-    n_replicas = input('Enter the number of Replicas between 1 to 10: \n')
-    if not validate_input(n_replicas): 
-        print('Replicas must be within 1 to 10')
-        sys.exit(1)
-
-    n_leaders = input('Enter the number of Leaders between 1 to 10: \n')
-    if not validate_input(n_leaders): 
-        print('Leaders must be within 1 to 10')
-        sys.exit(1)
-    
-    n_ops = input('Enter the number of operations to perform between 1 to 10: \n')
-    if not validate_input(n_ops): 
-        print('Operations must be within 1 to 10')
-        sys.exit(1)
-    Env(int(n_acceptors), int(n_replicas), int(n_leaders), int(n_ops)).run()
+    Env(2, 3, 2, 10).run()
